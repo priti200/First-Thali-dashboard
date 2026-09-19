@@ -1,0 +1,7 @@
+
+services:
+  - type: web
+    name: swasth-thali
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
