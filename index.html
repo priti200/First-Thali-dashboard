@@ -1740,6 +1740,537 @@
             }
 
         </style>
+
+        <style id="android-responsive-fix">
+            /* =========================================================
+               ANDROID / NARROW SCREEN RESPONSIVE FIX
+               Designed for 320px–600px CSS viewport widths.
+               Prevents desktop grid widths from overflowing the viewport.
+               ========================================================= */
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                -webkit-text-size-adjust: 100%;
+            }
+
+            .app {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            @media (max-width: 600px) {
+                /* Compact icon-only navigation */
+                .sidebar {
+                    width: 52px;
+                    padding: 12px 6px;
+                    overflow: hidden;
+                }
+
+                .brand {
+                    justify-content: center;
+                    padding: 4px 0 16px;
+                }
+
+                .brand .logo {
+                    font-size: 21px;
+                }
+
+                .brand div:not(.logo),
+                .sidebar-foot,
+                .nav button span + span {
+                    display: none !important;
+                }
+
+                .nav {
+                    width: 100%;
+                    align-items: center;
+                    gap: 5px;
+                }
+
+                .nav button {
+                    width: 40px;
+                    min-width: 40px;
+                    height: 40px;
+                    min-height: 40px;
+                    padding: 0;
+                    justify-content: center;
+                    border-radius: 8px;
+                    gap: 0;
+                }
+
+                .nav button span:first-child {
+                    width: auto;
+                    min-width: 0;
+                    font-size: 14px;
+                }
+
+                .main {
+                    margin-left: 52px;
+                    width: calc(100% - 52px);
+                    min-width: 0;
+                    max-width: calc(100% - 52px);
+                    overflow-x: hidden;
+                }
+
+                .content {
+                    width: 100%;
+                    max-width: 100%;
+                    padding: 16px 12px 28px;
+                    overflow-x: hidden;
+                }
+
+                /* Header */
+                .page-head {
+                    display: block;
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                .page-head h1 {
+                    font-size: 25px !important;
+                    line-height: 1.25;
+                    overflow-wrap: anywhere;
+                    word-break: normal;
+                }
+
+                .page-head h1 .sub {
+                    display: inline;
+                    font-size: 11px !important;
+                    white-space: nowrap;
+                }
+
+                .page-head p {
+                    font-size: 13px !important;
+                    line-height: 1.3;
+                    margin-top: 5px;
+                    max-width: 100%;
+                }
+
+                /* KPI cards: always 2 columns on phone */
+                .kpis,
+                .reportKpis {
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                    gap: 9px;
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                .kpi {
+                    min-width: 0;
+                    min-height: 110px;
+                    padding: 11px 12px;
+                    overflow: hidden;
+                }
+
+                .kpi .label {
+                    font-size: 12px !important;
+                    line-height: 1.2;
+                }
+
+                .kpi .value {
+                    font-size: 28px !important;
+                    line-height: 1.1;
+                    white-space: nowrap;
+                }
+
+                .kpi .trend {
+                    font-size: 11px !important;
+                    line-height: 1.2;
+                }
+
+                /* Keep the fifth KPI aligned with the 2-column design */
+                .kpis .kpi:last-child {
+                    grid-column: auto;
+                }
+
+                /* Every multi-column dashboard section becomes one column */
+                .g2,
+                .g3,
+                .g4,
+                .gMain,
+                .gWide,
+                .aiHeroGrid,
+                .schoolSnapshot {
+                    grid-template-columns: minmax(0, 1fr) !important;
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                .grid {
+                    width: 100%;
+                    max-width: 100%;
+                    min-width: 0;
+                }
+
+                .card {
+                    width: 100%;
+                    max-width: 100%;
+                    min-width: 0;
+                    overflow: hidden;
+                    padding: 11px;
+                }
+
+                .card h3 {
+                    font-size: 15px !important;
+                    line-height: 1.25;
+                }
+
+                /* Charts must scale to the actual content width */
+                .fakeChart {
+                    width: 100%;
+                    height: 230px;
+                    min-width: 0;
+                    padding: 18px 10px 30px 43px;
+                    overflow: visible;
+                }
+
+                .chartBars {
+                    width: 100%;
+                    min-width: 0;
+                    gap: 5px;
+                    padding: 0 5px;
+                }
+
+                .chartBars i {
+                    min-width: 4px;
+                }
+
+                .chartBars i::after {
+                    font-size: 10px;
+                }
+
+                .chartYTicks {
+                    left: 3px;
+                    width: 34px;
+                    font-size: 8px;
+                }
+
+                .chartAxisY {
+                    left: -1px;
+                    font-size: 9px;
+                }
+
+                .chartAxisX {
+                    font-size: 9px;
+                }
+
+                /* Donuts: stack legend underneath instead of overflowing */
+                .donutWrap {
+                    flex-direction: column;
+                    gap: 12px;
+                    width: 100%;
+                    min-width: 0;
+                    padding: 8px 0;
+                }
+
+                .donutLegend {
+                    width: 100%;
+                    gap: 8px;
+                    font-size: 11px;
+                }
+
+                .donutRing {
+                    width: 135px;
+                    height: 135px;
+                    flex-basis: 135px;
+                }
+
+                /* Tables remain readable without forcing the whole page wider */
+                .reportTableWrap,
+                .aiTableWrap,
+                .tableWrap {
+                    width: 100%;
+                    max-width: 100%;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+
+                .table {
+                    min-width: 600px;
+                }
+
+                /* Horizontal bar charts can scroll inside their card if required */
+                .comparisonBars,
+                .proteinBars {
+                    width: 100%;
+                    min-width: 0;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    padding-bottom: 28px;
+                }
+
+                .comparisonBars > div,
+                .proteinRow {
+                    min-width: 255px;
+                }
+
+                /* AI controls */
+                .aiToolbar {
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                .aiSelect,
+                .aiBtn {
+                    width: 100%;
+                    max-width: 100%;
+                    min-width: 0;
+                }
+
+                .aiImageWrap img {
+                    height: 220px;
+                }
+
+                .aiMetricGrid,
+                .aiStatusGrid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                }
+
+                .aiCompliance {
+                    grid-template-columns: 1fr;
+                }
+
+                /* School detail cards */
+                .school-metrics,
+                .nutrientGrid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .schoolHero {
+                    display: block;
+                }
+
+                .schoolHero h2 {
+                    font-size: 20px !important;
+                }
+
+                .threePhotos {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .threePhotos img {
+                    height: 110px;
+                }
+
+                .twoPhotos {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                /* Prevent fixed desktop elements from creating horizontal scroll */
+                img,
+                svg,
+                canvas,
+                video {
+                    max-width: 100%;
+                }
+
+                .modal {
+                    padding: 10px;
+                }
+
+                .modal-box {
+                    width: 100%;
+                    max-width: 100%;
+                    max-height: 94vh;
+                    padding: 13px;
+                }
+            }
+
+            /* Very narrow Android devices: 320px–359px viewport */
+            @media (max-width: 359px) {
+                .sidebar {
+                    width: 48px;
+                }
+
+                .main {
+                    margin-left: 48px;
+                    width: calc(100% - 48px);
+                    max-width: calc(100% - 48px);
+                }
+
+                .content {
+                    padding-left: 9px;
+                    padding-right: 9px;
+                }
+
+                .page-head h1 {
+                    font-size: 22px !important;
+                }
+
+                .page-head h1 .sub {
+                    font-size: 10px !important;
+                }
+
+                .kpis {
+                    gap: 7px;
+                }
+
+                .kpi {
+                    padding: 9px;
+                    min-height: 102px;
+                }
+
+                .kpi .value {
+                    font-size: 25px !important;
+                }
+            }
+
+
+        /* =========================================================
+           MOBILE TABLE SCROLL FIX
+           Every dashboard table gets an internal horizontal scroll.
+           ========================================================= */
+        @media screen and (max-width: 600px) {
+            .mobile-table-scroll {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                -webkit-overflow-scrolling: touch !important;
+                overscroll-behavior-x: contain;
+                scrollbar-width: thin;
+                scrollbar-color: #b7c4d4 #eef2f7;
+            }
+
+            .mobile-table-scroll::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .mobile-table-scroll::-webkit-scrollbar-track {
+                background: #eef2f7;
+                border-radius: 10px;
+            }
+
+            .mobile-table-scroll::-webkit-scrollbar-thumb {
+                background: #b7c4d4;
+                border-radius: 10px;
+            }
+
+            .mobile-table-scroll > table.table {
+                width: max-content !important;
+                min-width: 650px !important;
+                max-width: none !important;
+                table-layout: auto !important;
+            }
+
+            .mobile-table-scroll > table.table th,
+            .mobile-table-scroll > table.table td {
+                white-space: nowrap !important;
+            }
+
+            /* Tables that already have their own wrapper */
+            .reportTableWrap,
+            .aiTableWrap {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                -webkit-overflow-scrolling: touch !important;
+                overscroll-behavior-x: contain;
+                scrollbar-width: thin;
+                scrollbar-color: #b7c4d4 #eef2f7;
+            }
+
+            .reportTableWrap > table,
+            .aiTableWrap > table {
+                width: max-content !important;
+                min-width: 650px !important;
+                max-width: none !important;
+                table-layout: auto !important;
+            }
+
+            .reportTableWrap > table th,
+            .reportTableWrap > table td,
+            .aiTableWrap > table th,
+            .aiTableWrap > table td {
+                white-space: nowrap !important;
+            }
+        }
+
+        @media screen and (max-width: 359px) {
+            .mobile-table-scroll > table.table,
+            .reportTableWrap > table,
+            .aiTableWrap > table {
+                min-width: 620px !important;
+            }
+        }
+        /* =========================================================
+           ANDROID FIX — ROTI SIZE DISTRIBUTION CHART
+           ========================================================= */
+        
+        @media screen and (max-width: 600px) {
+        
+            /* Prevent the chart/card from clipping its bars */
+            .rotiDistribution,
+            .rotiChart,
+            .rotiHistogram {
+                overflow: visible !important;
+            }
+        
+            /*
+               Generic protection for the histogram used by the
+               Roti Size Distribution card.
+            */
+            .simpleHistogram {
+                height: 205px !important;
+        
+                min-height: 205px !important;
+        
+                padding-top: 35px !important;
+                padding-bottom: 28px !important;
+        
+                overflow: visible !important;
+        
+                align-items: flex-end !important;
+            }
+        
+            .simpleHistogram i {
+                max-height: 165px !important;
+        
+                transform-origin: bottom center;
+        
+                overflow: visible !important;
+            }
+        
+            /* Keep hover tooltip from being clipped */
+            .simpleHistogram i:hover span {
+                z-index: 100 !important;
+            }
+        
+            /*
+               If the Roti chart is inside a card, give it enough
+               vertical space on narrow screens.
+            */
+            .card:has(.simpleHistogram) {
+                overflow: visible !important;
+            }
+        }
+        
+        
+        /* =========================================================
+           VERY SMALL ANDROID PHONES
+           ========================================================= */
+        
+        @media screen and (max-width: 359px) {
+        
+            .simpleHistogram {
+                height: 190px !important;
+                min-height: 190px !important;
+        
+                padding-top: 30px !important;
+                padding-bottom: 25px !important;
+            }
+        
+            .simpleHistogram i {
+                max-height: 150px !important;
+            }
+        }
+
+        </style>
     </head>
     <body>
         <div class="app">
@@ -2879,6 +3410,69 @@
                 .addEventListener("change", (e) => {
                     if (e.target.value !== "ALL") openSchool(e.target.value);
                 });
+</script>
+
+        <script>
+            /* =========================================================
+               MOBILE TABLE SCROLL WRAPPER
+               The app creates many tables dynamically with innerHTML.
+               This automatically wraps every normal .table in a
+               horizontally scrollable container on narrow screens.
+               ========================================================= */
+            (function () {
+                function wrapMobileTables(root) {
+                    if (!window.matchMedia("(max-width: 600px)").matches) return;
+
+                    var scope = root && root.querySelectorAll ? root : document;
+                    var tables = scope.querySelectorAll("table.table");
+
+                    tables.forEach(function (table) {
+                        var parent = table.parentElement;
+                        if (!parent) return;
+
+                        /* Existing dedicated wrappers already scroll. */
+                        if (
+                            parent.classList.contains("mobile-table-scroll") ||
+                            parent.classList.contains("reportTableWrap") ||
+                            parent.classList.contains("aiTableWrap")
+                        ) {
+                            return;
+                        }
+
+                        var wrapper = document.createElement("div");
+                        wrapper.className = "mobile-table-scroll";
+                        parent.insertBefore(wrapper, table);
+                        wrapper.appendChild(table);
+                    });
+
+                    /* Existing report/AI wrappers also need a real wide table. */
+                    scope.querySelectorAll(".reportTableWrap > table.table, .aiTableWrap > table.table").forEach(function (table) {
+                        table.style.width = "max-content";
+                        table.style.minWidth = "650px";
+                        table.style.maxWidth = "none";
+                        table.style.tableLayout = "auto";
+                    });
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    wrapMobileTables(document);
+
+                    var observer = new MutationObserver(function (mutations) {
+                        mutations.forEach(function (mutation) {
+                            mutation.addedNodes.forEach(function (node) {
+                                if (node.nodeType === 1) {
+                                    wrapMobileTables(node);
+                                }
+                            });
+                        });
+                    });
+
+                    observer.observe(document.getElementById("content") || document.body, {
+                        childList: true,
+                        subtree: true
+                    });
+                });
+            })();
         </script>
     </body>
 </html>
